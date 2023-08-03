@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class PostsController extends Controller
      */
     public function all()
     {
-        return Post::paginate(5,['id','title']);
+        $posts=Post::paginate(5);
+        return PostResource::collection($posts);
     }
     public function index()
     {
